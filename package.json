@@ -1,0 +1,60 @@
+{
+  "name": "angular2-grunt-starter",
+  "version": "0.1.0",
+  "description": "An Angular2 and Grunt minimal project starter",
+  "main": "index.js",
+  "scripts": {
+    "start": "lite-server --baseDir './public' --files './public/**/*.html' './public/**/*.css' './public/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haoliangyu/angular2-grunt-starter.git"
+  },
+  "keywords": [
+    "angular2",
+    "grunt",
+    "leaflet"
+  ],
+  "author": "Haoliang Yu <haholiang.yu@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haoliangyu/angular2-grunt-starter/issues"
+  },
+  "homepage": "https://github.com/haoliangyu/angular2-grunt-starter#readme",
+  "dependencies": {
+    "@angular/common": "2.0.0-rc.4",
+    "@angular/compiler": "2.0.0-rc.4",
+    "@angular/core": "2.0.0-rc.4",
+    "@angular/forms": "0.2.0",
+    "@angular/http": "^2.0.0-rc.4",
+    "@angular/platform-browser": "^2.0.0-rc.4",
+    "@angular/platform-browser-dynamic": "^2.0.0-rc.4",
+    "bootstrap": "^3.3.6",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.35.0",
+    "font-awesome": "^4.5.0",
+    "mapbox-gl": "^0.21.0",
+    "ng2-bootstrap": "1.0.24",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.6",
+    "systemjs": "^0.19.9",
+    "zone.js": "^0.6.12"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.0",
+    "file-loader": "^0.8.5",
+    "html-webpack-plugin": "^1.7.0",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.2",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.0",
+    "to-string-loader": "^1.1.3",
+    "ts-loader": "^0.7.2",
+    "typescript": "^1.7.5",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0",
+    "webpack-sources": "^0.1.0"
+  }
+}
