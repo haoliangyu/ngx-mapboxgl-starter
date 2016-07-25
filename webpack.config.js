@@ -21,13 +21,20 @@ module.exports = {
         chunkFilename: '[id].chunk.js'
     },
     resolve: {
-        extensions: ['', '.ts', '.component.ts', '.service.ts', '.js', '.component.html', '.component.less', '.less', '.css']
+        extensions: ['', '.ts', '.component.ts', '.service.ts', '.js', '.component.html', '.component.less', '.less', '.css'],
+        alias: {
+            'webworkify': 'webworkify-webpack',
+            'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
+        }
     },
     module: {
+        preLoaders: [
+            { test: /\.ts$/, loader: 'tslint' }
+        ],
         loaders: [
-            { test: /(\.component|\.service|)\.ts$/, loader: 'ts-loader'},
-            { test: /\.component\.html$/, loader: 'raw' },
-            { test: /(\.component|)\.less$/, loader: 'to-string!css!less' },
+            { test: /\.ts$/, loader: 'ts-loader'},
+            { test: /\.html$/, loader: 'raw' },
+            { test: /\.less$/, loader: 'to-string!css!less' },
             { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
             { test: /\.(png|gif|jpg)$/, loader: "file?name=images/[name].[ext]" },
             // For font-awesome, created by Turbo87:
@@ -37,6 +44,13 @@ module.exports = {
             { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file?name=fonts/[name].[ext]" },
             { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file?name=fonts/[name].[ext]" },
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "file?name=fonts/[name].[ext]" }
+        ],
+        postLoaders: [
+            {
+                include: /node_modules\/mapbox-gl-shaders/,
+                loader: 'transform',
+                query: 'brfs'
+            }
         ],
         noParse: [ path.join(__dirname, 'node_modules', 'angular2', 'bundles') ]
     },

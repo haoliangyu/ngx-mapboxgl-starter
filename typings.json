@@ -1,7 +1,7 @@
 {
   "name": "angular2-grunt-starter",
   "globalDependencies": {
-    "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#bd269cad4cb2b495f940c7b6afc5825d568029be",
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504",
     "geojson": "registry:dt/geojson#0.0.0+20160619034323",
     "mapbox-gl": "github:dobrud/typed-mapbox-gl"
   }

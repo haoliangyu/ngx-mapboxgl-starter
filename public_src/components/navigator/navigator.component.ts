@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {GeocodingService} from '../../services/geocoding.service';
 import {MapService} from '../../services/map.service';
 import {Location} from '../../core/location.class';
-import {Map} from 'leaflet';
+import {Map} from 'mapbox-gl';
 
 @Component({
     selector: 'navigator',
@@ -26,13 +26,11 @@ export class NavigatorComponent {
     }
 
     ngOnInit() {
-        this.mapService.disableMouseEvent('goto');
-        this.mapService.disableMouseEvent('place-input');
         this.map = this.mapService.map;
     }
 
     goto() {
-        if (!this.address) { return;}
+        if (!this.address) { return; }
 
         this.geocoder.geocode(this.address)
         .subscribe(location => {

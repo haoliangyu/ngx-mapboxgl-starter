@@ -4,6 +4,7 @@ import {MarkerComponent} from '../marker/marker.component';
 import {MapService} from '../../services/map.service';
 import {GeocodingService} from '../../services/geocoding.service';
 import {Location} from '../../core/location.class';
+import {LngLat, Map} from 'mapbox-gl';
 
 @Component({
     selector: 'app',
@@ -17,7 +18,7 @@ export class AppComponent {
     private mapService: MapService;
     private geocoder: GeocodingService;
 
-    @ViewChild(MarkerComponent) markerComponent:MarkerComponent;
+    @ViewChild(MarkerComponent) markerComponent: MarkerComponent;
 
     constructor(mapService: MapService, geocoder: GeocodingService) {
         this.mapService = mapService;
@@ -25,26 +26,15 @@ export class AppComponent {
     }
 
     ngOnInit() {
-        var map = new L.Map('map', {
-          zoomControl: false,
-          center: new L.LatLng(40.731253, -73.996139),
-          zoom: 12,
-          minZoom: 4,
-          maxZoom: 19,
-          layers: [this.mapService.baseMaps.OpenStreetMap]
+
+        let map = new Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/light-v9',
+            zoom: 5,
+            center: [-78.880453, 42.897852]
         });
 
-        L.control.zoom({ position: 'topright' }).addTo(map);
-        L.control.layers(this.mapService.baseMaps).addTo(map);
-        L.control.scale().addTo(map);
-
         this.mapService.map = map;
-
-        this.geocoder.getCurrentLocation()
-        .subscribe(
-            location => map.panTo([location.latitude, location.longitude]),
-            err => console.error(err)
-        );
     }
 
     ngAfterViewInit() {
