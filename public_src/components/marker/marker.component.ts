@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
 import {CORE_DIRECTIVES, NgClass} from '@angular/common';
+import {GeocodingService} from '../../services/geocoding.service';
 import {MapService} from '../../services/map.service';
-// import {Map, LeafletMouseEvent, Marker} from 'leaflet';
+import {Location} from '../../core/location.class';
+import {MapMouseEvent, Popup} from 'mapbox-gl';
 
 @Component({
     selector: 'marker',
@@ -14,64 +16,31 @@ import {MapService} from '../../services/map.service';
 })
 export class MarkerComponent {
     editing: boolean;
-    removing: boolean;
-    markerCount: number;
+    geocoder: GeocodingService;
 
     private mapService: MapService;
 
-    constructor(mapService: MapService) {
+    constructor(mapService: MapService, geocoder: GeocodingService) {
         this.editing = false;
-        this.removing = false;
-        this.markerCount = 0;
         this.mapService = mapService;
-    }
-
-    ngOnInit() {
-        // this.mapService.disableMouseEvent('add-marker');
-        // this.mapService.disableMouseEvent('remove-marker');
+        this.geocoder = geocoder;
     }
 
     Initialize() {
-        // this.mapService.map.on('click', (e: LeafletMouseEvent) => {
-        //     if (this.editing) {
-        //         let marker = L.marker(e.latlng, {
-        //             icon: L.icon({
-        //                 iconUrl: require<any>('../../../node_modules/leaflet/dist/images/marker-icon.png'),
-        //                 shadowUrl: require<any>('../../../node_modules/leaflet/dist/images/marker-shadow.png')
-        //             }),
-        //             draggable: true
-        //         })
-        //         .bindPopup('Marker #' + (this.markerCount + 1).toString(), {
-        //             offset: L.point(12, 6)
-        //         })
-        //         .addTo(this.mapService.map)
-        //         .openPopup();
-        //
-        //         this.markerCount += 1;
-        //
-        //         marker.on('click', (event: MouseEvent) => {
-        //             if (this.removing) {
-        //                 this.mapService.map.removeLayer(marker);
-        //                 this.markerCount -= 1;
-        //             }
-        //         });
-        //     }
-        // });
+        this.mapService.map.on('click', (e: MapMouseEvent) => {
+            if (this.editing) {
+                this.geocoder.regeocode(e.lngLat)
+                .subscribe(location => {
+                  let marker = new Popup()
+                    .setHTML(location.address)
+                    .setLngLat(e.lngLat)
+                    .addTo(this.mapService.map);
+                }, error => console.error(error));
+            }
+        });
     }
 
     toggleEditing() {
         this.editing = !this.editing;
-
-        if (this.editing === true && this.removing === true) {
-            this.removing = false;
-        }
-    }
-
-    toggleRemoving() {
-        this.removing = !this.removing;
-
-        if (this.editing === true && this.removing === true) {
-            this.editing = false;
-        }
     }
 }

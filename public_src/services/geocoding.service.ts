@@ -16,7 +16,7 @@ export class GeocodingService {
 
     geocode(address: string) {
         return this.http
-            .get('http://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURIComponent(address))
+            .get(`http://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}`)
             .map(res => res.json())
             .map(result => {
                 if (result.status !== 'OK') { throw new Error('unable to geocode address'); }
@@ -36,20 +36,19 @@ export class GeocodingService {
             });
     }
 
-    getCurrentLocation() {
+    regeocode(lngLat: LngLat) {
         return this.http
-            .get('http://ipv4.myexternalip.com/json')
-            .map(res => res.json().ip)
-            .flatMap(ip => this.http.get('http://freegeoip.net/json/' + ip))
-            .map((res: Response) => res.json())
-            .map(result => {
-                let location = new Location();
+          .get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lngLat.lat},${lngLat.lng}`)
+          .map(res => res.json())
+          .map(result => {
+            if (result.status !== 'OK' || result.results.length < 1) { throw new Error('unable to geocode lat/lng'); }
 
-                location.address = result.city + ', ' + result.region_code + ' ' + result.zip_code + ', ' + result.country_code;
-                location.latitude = result.latitude;
-                location.longitude = result.longitude;
+            let location = new Location();
+            location.address = result.results[0].formatted_address;
+            location.latitude = lngLat.lat;
+            location.longitude = lngLat.lng;
 
-                return location;
-            });
+            return location;
+          })
     }
 }
