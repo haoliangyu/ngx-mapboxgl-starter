@@ -1,6 +1,7 @@
 /// <reference path="./typings/require.d.ts"/>
 
-import 'zone.js';
+import 'zone.js/dist/zone';
+import 'zone.js/dist/long-stack-trace-zone';
 import 'reflect-metadata';
 
 require('../node_modules/bootstrap/dist/css/bootstrap.css');

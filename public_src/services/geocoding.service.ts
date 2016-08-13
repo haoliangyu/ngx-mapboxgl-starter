@@ -49,6 +49,6 @@ export class GeocodingService {
             location.longitude = lngLat.lng;
 
             return location;
-          })
+          });
     }
 }

@@ -4,7 +4,6 @@
   "description": "An Angular2 and Grunt minimal project starter",
   "main": "index.js",
   "scripts": {
-    "start": "lite-server --baseDir './public' --files './public/**/*.html' './public/**/*.css' './public/**/*.js'"
   },
   "repository": {
     "type": "git",
@@ -12,8 +11,7 @@
   },
   "keywords": [
     "angular2",
-    "grunt",
-    "leaflet"
+    "mapbox-gl"
   ],
   "author": "Haoliang Yu <haholiang.yu@outlook.com>",
   "license": "MIT",
