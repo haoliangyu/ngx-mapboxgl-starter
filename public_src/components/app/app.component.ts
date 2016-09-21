@@ -12,17 +12,12 @@ import {LngLat, Map} from 'mapbox-gl';
     styles: [
         require<any>('./app.component.less')
     ],
-    directives: [NavigatorComponent, MarkerComponent]
+    providers: []
 })
 export class AppComponent {
-    private mapService: MapService;
-    private geocoder: GeocodingService;
-
     @ViewChild(MarkerComponent) markerComponent: MarkerComponent;
 
-    constructor(mapService: MapService, geocoder: GeocodingService) {
-        this.mapService = mapService;
-        this.geocoder = geocoder;
+    constructor(private mapService: MapService, private geocoder: GeocodingService) {
     }
 
     ngOnInit() {

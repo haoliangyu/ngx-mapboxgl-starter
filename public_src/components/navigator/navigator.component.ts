@@ -10,19 +10,15 @@ import {Map} from 'mapbox-gl';
     styles: [
         require<any>('./navigator.component.less'),
         require<any>('../../styles/main.less')
-    ]
+    ],
+    providers: []
 })
 export class NavigatorComponent {
-    address: string;
-
-    private geocoder: GeocodingService;
+    private address: string;
     private map: Map;
-    private mapService: MapService;
 
-    constructor(geocoder: GeocodingService, mapService: MapService) {
+    constructor(private geocoder: GeocodingService, private mapService: MapService) {
         this.address = '';
-        this.geocoder = geocoder;
-        this.mapService = mapService;
     }
 
     ngOnInit() {

@@ -11,7 +11,7 @@ A minimal project seed of Angular2, Webpack, and MapboxGL.
 
 See [**live demo**](https://haoliangyu.github.io/angular2-mapboxgl-starter/).
 
-Working with [angular-2.0.0-rc4](https://github.com/angular/angular/blob/master/CHANGELOG.md#200-rc4-2016-06-30).
+Working with [Angular 2 official release](https://github.com/angular/angular/blob/master/CHANGELOG.md#200-2016-09-14)!
 
 ## How to set up
 

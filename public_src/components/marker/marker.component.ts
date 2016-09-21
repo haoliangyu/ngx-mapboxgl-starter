@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {CORE_DIRECTIVES, NgClass} from '@angular/common';
 import {GeocodingService} from '../../services/geocoding.service';
 import {MapService} from '../../services/map.service';
 import {Location} from '../../core/location.class';
@@ -12,18 +11,13 @@ import {MapMouseEvent, Popup} from 'mapbox-gl';
         require<any>('./marker.component.less'),
         require<any>('../../styles/main.less')
     ],
-    directives: [CORE_DIRECTIVES]
+    providers: []
 })
 export class MarkerComponent {
     editing: boolean;
-    geocoder: GeocodingService;
 
-    private mapService: MapService;
-
-    constructor(mapService: MapService, geocoder: GeocodingService) {
+    constructor(private mapService: MapService, private geocoder: GeocodingService) {
         this.editing = false;
-        this.mapService = mapService;
-        this.geocoder = geocoder;
     }
 
     Initialize() {
