@@ -1,12 +1,12 @@
 {
-  "name": "angular2-grunt-starter",
-  "version": "0.1.1",
-  "description": "An Angular2 and Grunt minimal project starter",
+  "name": "angular2-mapboxgl-starter",
+  "version": "1.0.2",
+  "description": "An Angular2 and MapboxGL minimal project starter",
   "main": "index.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/haoliangyu/angular2-grunt-starter.git"
+    "url": "git+https://github.com/haoliangyu/angular2-mapboxgl-starter.git"
   },
   "keywords": [
     "angular2",
@@ -15,9 +15,9 @@
   "author": "Haoliang Yu <haholiang.yu@outlook.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/haoliangyu/angular2-grunt-starter/issues"
+    "url": "https://github.com/haoliangyu/angular2-mapboxgl-starter/issues"
   },
-  "homepage": "https://github.com/haoliangyu/angular2-grunt-starter#readme",
+  "homepage": "https://github.com/haoliangyu/angular2-mapboxgl-starter#readme",
   "dependencies": {
     "@angular/common": "2.0.0",
     "@angular/compiler": "2.0.0",
