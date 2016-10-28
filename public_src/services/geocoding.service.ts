@@ -16,7 +16,7 @@ export class GeocodingService {
 
     geocode(address: string) {
         return this.http
-            .get(`http://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}`)
+            .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}`)
             .map(res => res.json())
             .map(result => {
                 if (result.status !== 'OK') { throw new Error('unable to geocode address'); }
@@ -38,7 +38,7 @@ export class GeocodingService {
 
     regeocode(lngLat: LngLat) {
         return this.http
-          .get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lngLat.lat},${lngLat.lng}`)
+          .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lngLat.lat},${lngLat.lng}`)
           .map(res => res.json())
           .map(result => {
             if (result.status !== 'OK' || result.results.length < 1) { throw new Error('unable to geocode lat/lng'); }
