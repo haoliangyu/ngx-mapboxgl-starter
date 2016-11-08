@@ -1,8 +1,0 @@
-{
-  "name": "angular2-mapboxgl-starter",
-  "globalDependencies": {
-    "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504",
-    "geojson": "registry:dt/geojson#0.0.0+20160619034323",
-    "mapbox-gl": "github:dobrud/typed-mapbox-gl"
-  }
-}
