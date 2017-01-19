@@ -15,9 +15,9 @@ Working with [Angular 2 official release](https://github.com/angular/angular/blo
 
 ## How to set up
 
-This project requires [npm](https://www.npmjs.com/) and [webpack](http://webpack.github.io/docs/installation.html).
+This project requires [npm](https://www.npmjs.com/) (or [yarn](https://yarnpkg.com/)) and [webpack](http://webpack.github.io/docs/installation.html).
 
-1.	Run `npm install` to install all dependencies.
+1.	Run `npm install` or `yarn install` to install all dependencies.
 
 2.	Run `webpack` to build the project.
 
