@@ -27,4 +27,4 @@ This project requires [npm](https://www.npmjs.com/) (or [yarn](https://yarnpkg.c
 
 * [angular2-leaflet-starter](https://github.com/haoliangyu/angular2-leaflet-starter) is an Angular 2 project seed with [Leaflet](http://leafletjs.com/), the most popular Javascript mapping library.
 
-* [boundary.now](https://github.com/haoliangyu/boundary.now), a tool to easily download place boundries, created with [Material2](https://github.com/angular/material2) and [Leaflet](http://leafletjs.com/).
+* [boundary.now](https://github.com/haoliangyu/boundary.now), a tool to download place boundries from OpenStreetMap, built with Angular2, [Material2](https://github.com/angular/material2) and Leaflet.
