@@ -4,10 +4,10 @@ A minimal project seed of Angular2, Webpack, and MapboxGL.
 
 **Features**
 
-- [ ] Switch basemap from a collection
 - [x] Geocoding and reverse Geocoding via Google geocoding API
 - [x] Add popup with mouse click on the map
 - [x] Pan to geocoding result
+- [x] Webpack 2
 
 See [**live demo**](https://haoliangyu.github.io/angular2-mapboxgl-starter/).
 

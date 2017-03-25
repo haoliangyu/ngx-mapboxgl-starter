@@ -1,53 +1,48 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
-var HtmlWebpackPlugin  = require('html-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var OptimizeJsPlugin = require("optimize-js-plugin");
+const HtmlWebpackPlugin  = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const OptimizeJsPlugin = require("optimize-js-plugin");
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
-var srcDir = 'public_src';
-var outputDir = 'public';
+const srcDir = 'public_src';
+const outputDir = 'public';
 
 module.exports = {
     devtool: "source-map",
-    debug: true,
     entry: {
-        libs: path.resolve(srcDir, 'libs.ts'),
         app: path.resolve(srcDir, 'bootstrap.ts')
     },
     output: {
-        path: outputDir,
-        filename: '[name].bundle.js',
-        sourceMapFilename: '[name].map',
-        chunkFilename: '[id].chunk.js'
+        path: path.resolve(__dirname, outputDir),
+        filename: '[name].[hash].bundle.js',
+        sourceMapFilename: '[name].[hash].map',
+        chunkFilename: '[id].[hash].chunk.js'
     },
     resolve: {
-        extensions: ['', '.ts', '.component.ts', '.service.ts', '.js', '.component.html', '.component.less', '.less', '.css'],
+        extensions: ['.ts', '.component.ts', '.service.ts', '.js', '.component.html', '.component.less', '.less', '.css'],
         alias: {
             'webworkify': 'webworkify-webpack',
             'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
         }
     },
     module: {
-        preLoaders: [
-            { test: /\.ts$/, loader: 'tslint' }
-        ],
-        loaders: [
-            { test: /\.ts$/, loader: 'ts-loader'},
-            { test: /\.html$/, loader: 'raw' },
-            { test: /\.less$/, loader: 'to-string!css!less' },
-            { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
-            { test: /\.(png|gif|jpg)$/, loader: "file?name=images/[name].[ext]" },
-            // For font-awesome, created by Turbo87:
-            // https://gist.github.com/Turbo87/e8e941e68308d3b40ef6
-            { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "file?name=fonts/[name].[ext]" },
-            { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "file?name=fonts/[name].[ext]" },
-            { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file?name=fonts/[name].[ext]" },
-            { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file?name=fonts/[name].[ext]" },
-            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "file?name=fonts/[name].[ext]" }
-        ],
-        postLoaders: [
+        rules: [
+            { test: /\.ts$/, enforce: 'pre', loader: 'tslint-loader' },
+            { test: /(\.component|\.service|)\.ts$/, use: ['ts-loader'] },
+            { test: /\.component\.html$/, use: ['raw-loader'] },
+            { test: /(\.component|)\.less$/, use: ['to-string-loader', 'css-loader', 'less-loader'] },
+            { test: /\.css$/, use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
+            { test: /\.(png|gif|jpg)$/, use:[{ loader: 'file-loader', options: { name: 'images/[name].[ext]'} } ]},
+            { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, use:[{ loader: 'file-loader', options: { name: 'fonts/[name].[ext]'} } ]},
+            { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, use:[{ loader: 'file-loader', options: { name: 'fonts/[name].[ext]'} } ]},
+            { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, use:[{ loader: 'file-loader', options: { name: 'fonts/[name].[ext]'} } ]},
+            { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use:[{ loader: 'file-loader', options: { name: 'fonts/[name].[ext]'} } ]},
+            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use:[{ loader: 'file-loader', options: { name: 'fonts/[name].[ext]'} } ]},
             {
+                enforce: 'post',
                 include: /node_modules\/mapbox-gl-shaders/,
                 loader: 'transform',
                 query: 'brfs'
@@ -61,13 +56,19 @@ module.exports = {
         //     sourceMap: false,
         //     mangle: true
         // }),
-        new ExtractTextPlugin("[name].css"),
+        new ExtractTextPlugin("[name].[hash].css"),
         new HtmlWebpackPlugin({
             template: path.resolve(srcDir, 'index.html'),
             inject: true
         }),
+        new ScriptExtHtmlWebpackPlugin({
+            defaultAttribute: 'defer'
+        }),
         new OptimizeJsPlugin({
           sourceMap: false
+        }),
+        new WebpackCleanupPlugin({
+            exclude: ['index.html']
         })
     ]
 };
