@@ -1,6 +1,6 @@
-# angular2-mapboxgl-starter
+# ngx-mapboxgl-starter
 
-A minimal project seed of Angular2, Webpack, and MapboxGL.
+A minimal project seed of Angular, Webpack, and MapboxGL.
 
 **Features**
 
@@ -9,9 +9,9 @@ A minimal project seed of Angular2, Webpack, and MapboxGL.
 - [x] Pan to geocoding result
 - [x] Webpack 2
 
-See [**live demo**](https://haoliangyu.github.io/angular2-mapboxgl-starter/).
+See [**live demo**](https://haoliangyu.github.io/ngx-mapboxgl-starter/).
 
-Working with [Angular 2 official release](https://github.com/angular/angular/blob/master/CHANGELOG.md#200-2016-09-14)!
+Working with [Angular 4.0](https://angular.io/)!
 
 ## How to set up
 
@@ -25,6 +25,6 @@ This project requires [npm](https://www.npmjs.com/) (or [yarn](https://yarnpkg.c
 
 ## Looking for other demos?
 
-* [angular2-leaflet-starter](https://github.com/haoliangyu/angular2-leaflet-starter) is an Angular 2 project seed with [Leaflet](http://leafletjs.com/), the most popular Javascript mapping library.
+* [ngx-leaflet-starter](https://github.com/haoliangyu/ngx-leaflet-starter) is an Angular 2 project seed with [Leaflet](http://leafletjs.com/), the most popular Javascript mapping library.
 
 * [boundary.now](https://github.com/haoliangyu/boundary.now), a tool to download place boundries from OpenStreetMap, built with Angular2, [Material2](https://github.com/angular/material2) and Leaflet.
