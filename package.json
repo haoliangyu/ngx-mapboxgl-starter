@@ -1,6 +1,6 @@
 {
   "name": "ngx-mapboxgl-starter",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "An Angular2 and MapboxGL minimal project starter",
   "main": "index.js",
   "repository": {
