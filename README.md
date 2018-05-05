@@ -1,5 +1,7 @@
 # ngx-mapboxgl-starter
 
+**Looking for maintainer!**
+
 A minimal project seed of Angular, Webpack, and MapboxGL.
 
 **Features**
